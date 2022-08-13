@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charts</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/css/styles.css') }}">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.month(placeholder="Month") }}
+      </div>
+      <div>
+        {{ form.submit() }}
+      </div>
+    </form>
+    <div id='bar_chart' ”></div>
+    <div id='pie_chart' ”></div>
+  </div>
+
+</body>
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var bar_graph = {{bar_json | safe}};
+  Plotly.plot('bar_chart',bar_graph,{});
+</script>
+<script type='text/javascript'>
+  var pie_graph = {{pie_json | safe}};
+  Plotly.plot('pie_chart',pie_graph,{});
+</script>
+
+</html>
